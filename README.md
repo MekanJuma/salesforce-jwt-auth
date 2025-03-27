@@ -1,6 +1,6 @@
 # Salesforce JWT Token Authentication Setup
 
-This repository contains a Python script for generating JWT tokens for Salesforce API authentication using a Connected App. Follow these steps to set up JWT-based authentication for your Salesforce application.
+This repository contains Python scripts for generating and testing JWT tokens for Salesforce API authentication using a Connected App. Follow these steps to set up JWT-based authentication for your Salesforce application.
 
 ## Prerequisites
 
@@ -25,7 +25,7 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 3. Install required packages:
 ```bash
-pip install PyJWT cryptography
+pip install PyJWT cryptography requests
 ```
 
 ## Step-by-Step Setup Process
@@ -100,13 +100,49 @@ When generating the CSR, you'll be prompted for several pieces of information. T
 
 ## Usage
 
+### Generate JWT Token
+
 Run the script to generate a JWT token:
 
 ```bash
 python main.py
 ```
 
-The script will output a JWT token that can be used for Salesforce API authentication.
+The script will generate a JWT token and save it to `token.json` file.
+
+### Test the Token
+
+After generating the token, you can test it using the test script:
+
+```bash
+python test_token.py
+```
+
+The test script will:
+1. Load the JWT token from `token.json`
+2. Exchange it for a Salesforce access token
+3. Make a test API call to verify the authentication
+4. Display user information if successful
+
+Example output:
+```
+🔄 Starting Salesforce API test...
+Time: 2024-01-24 10:30:00
+
+1️⃣ Loading JWT token from token.json...
+Token loaded successfully!
+
+2️⃣ Exchanging JWT token for access token...
+✅ Authentication successful!
+
+3️⃣ Testing API call...
+✅ API Call successful!
+Authenticated as: John Doe
+Email: john.doe@example.com
+User ID: 005xxxxxxxxxxxxxxx
+
+✨ Test completed!
+```
 
 ## Token Details
 
@@ -123,6 +159,7 @@ The generated token includes:
 2. Keep your private key secure and restrict access to authorized personnel
 3. Rotate certificates periodically (recommended annually)
 4. Monitor Connected App usage in Salesforce Setup
+5. The `token.json` file containing your JWT token is automatically ignored by git
 
 ## Troubleshooting
 
@@ -142,4 +179,11 @@ Common issues and solutions:
    - Ensure all required packages are installed
    - Verify the private key file is unencrypted and readable
    - Check that the algorithm specified matches the certificate type
+
+4. **API Call Errors**
+   - Verify the access token was obtained successfully
+   - Check that the API version in the URL is supported
+   - Ensure the user has appropriate permissions for the API endpoint
+
+
 
