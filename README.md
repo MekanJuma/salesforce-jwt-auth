@@ -13,7 +13,7 @@ This repository contains a Python script for generating JWT tokens for Salesforc
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/yourusername/salesforce-jwt-auth.git
+git clone https://github.com/MekanJuma/salesforce-jwt-auth.git
 cd salesforce-jwt-auth
 ```
 
@@ -60,7 +60,7 @@ When generating the CSR, you'll be prompted for several pieces of information. T
    - Contact Email: Your email
 4. Enable OAuth Settings:
    - Enable OAuth Settings: ✓
-   - Callback URL: http://localhost:8080/callback (or your actual callback URL)
+   - Callback URL: `file:///`
    - Use digital signatures: ✓
    - Upload your `certificate.crt` file
 5. Select OAuth Scopes:
@@ -143,6 +143,3 @@ Common issues and solutions:
    - Verify the private key file is unencrypted and readable
    - Check that the algorithm specified matches the certificate type
 
-## Contributing
-
-Feel free to submit issues and enhancement requests! 
