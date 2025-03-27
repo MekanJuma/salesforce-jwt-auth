@@ -1,6 +1,7 @@
 import jwt
 import time
 from datetime import datetime, timedelta
+import json
 
 # Configuration
 private_key = open('private_unencrypted.key', 'r').read()
@@ -25,4 +26,13 @@ encoded_token = jwt.encode(
     headers={"alg": "RS256"}
 )
 
-print("SALESFORCE_SIGNED_TOKEN:", encoded_token)
+# Create token data
+token_data = {
+    "SALESFORCE_SIGNED_TOKEN": encoded_token
+}
+
+# Save to JSON file
+with open('token.json', 'w') as f:
+    json.dump(token_data, f, indent=2)
+
+print("Token has been saved to token.json")

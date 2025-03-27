@@ -13,6 +13,9 @@ venv/
 *.p12
 *.pfx
 
+# Tokens and Sensitive Data
+*.json
+
 # IDE
 .vscode/
 .idea/
